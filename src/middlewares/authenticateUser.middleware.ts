@@ -11,11 +11,11 @@ const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
       throw new ErrorHandler(400, "Missing header authorization");
     }
 
-    const token = auth.split("")[1];
+    const token = auth.split(" ")[1];
 
     jwt.verify(token, jwtConfigs.secretKey, (err, decode) => {
       if (err) {
-        throw new ErrorHandler(401, "Invalid token");
+        throw new ErrorHandler(401, "Unauthorized");
       }
       if (typeof decode !== "string" && decode) {
         req.uuid = decode.uuid;
