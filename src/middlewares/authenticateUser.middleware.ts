@@ -8,7 +8,7 @@ const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
     const auth = req.headers.authorization;
 
     if (!auth) {
-      throw new ErrorHandler(400, "Missing header authorization");
+      throw new ErrorHandler(401, "Missing header authorization");
     }
 
     const token = auth.split(" ")[1];
