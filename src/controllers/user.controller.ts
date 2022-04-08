@@ -46,7 +46,7 @@ export const loginUser = async (req: Request, res: Response) => {
   const user = await new UserRepository().retrieveUserByEmail(email);
 
   if (!user) {
-    return res.status(404).json({ message: "user not found" });
+    return res.status(404).json({ message: "Wrong email/password" });
   }
 
   const match = await bcrypt.compare(password, user.password);
